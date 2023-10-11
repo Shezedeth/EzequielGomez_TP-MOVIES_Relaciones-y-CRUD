@@ -1,24 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Películas ordas por rating</title>
-    <link rel='stylesheet' href='/css/style.css' />
-</head>
-<body>
-    <figure>
-        <img src="/img/logo-DH.png" alt="Logo Digital House">
-    </figure>
-    <h1>PEÍCULAS ORDENADAS POR POSICIÓN</h1>
-    <ul>
-        <% for( let i = 0; i < movies.length; i++ ) { %>
-        <li>
-            <a href="/movies/detail/<%=movies[i].id%>"><%= movies[i].title %> </a> <br>
-            <%= 'RATING: ' + movies[i].rating %> 
-        </li>
+<html lang="es">
+
+<%- include('partials/head', {title: 'SalióPeli | ORDENADAS POR RATING' }) %>
+
+  <!-- ----------------------------------- -->
+
+  <body class="body_moviesAdd">
+
+      <%- include('partials/slideBarMenu') %>
+      
+    <div class="movieList_cards-wrapper_codingnepal">
+    
+    <h1 class="text-light">PEÍCULAS ORDENADAS POR POSICIÓN</h1>
+    <table class="table table-hover">
+    
+        <thead>
+          <tr>
+            <th class="text-center" scope="col">#</th>
+            <th scope="col">Pelicula</th>
+            <th scope="col">Rating</th>
+
+          </tr>
+        </thead>
+        <% for( let i = 0; i < mejores.length; i++ ) { %>
+        <tbody>
+          <tr>
+            <td class="text-center"><%= i + 1 %></td>
+            <td> <a class="text-dark" href="/movies/detail/<%= mejores[i].id%>"><%= mejores[i].title %> </a></td>
+            <td><%= 'RATING: ' + mejores[i].rating %> </td>
+          </tr>
+        </tbody>      
         <% } %>
-        
-    </ul>
+      </table>
+    
+    
+    </div>
+
+
+    <%- include('partials/scripts') %>
 </body>
 </html>

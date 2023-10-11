@@ -59,22 +59,53 @@ const moviesController = {
   .catch((error) => console.log(error));
   },
   new: (req, res) => {
-    db.Movie.findAll({
-      order: [["release_date", "DESC"]],
-      limit: 5,
-    }).then((movies) => {
-      res.render("newestMovies", { movies });
-    })
-    .catch((error) => console.log(error));
+    const movies = db.Movie.findByPk(req.params.id)
+    
+    const genres = db.Genre.findAll({
+    order: ['name'],
+  })
+    const top = db.Movie.findAll({
+    limit: 5,
+    where: {
+      rating: { [db.Sequelize.Op.gte]: 8 },
+    },
+    order: [["rating", "DESC"]],
+  })
+  Promise.all([movies,genres,top])
+  .then(([movies,genres,top]) => {
+    res.render("moviesDetail", {
+    movies,
+    genres,
+    moment,
+    top 
+    });
+  })
   },
   recomended: (req, res) => {
-    db.Movie.findAll({
+    const mejores = db.Movie.findAll({
       where: {
         rating: { [db.Sequelize.Op.gte]: 8 },
       },
       order: [["rating", "DESC"]],
-    }).then((movies) => {
-      res.render("recommendedMovies.ejs", { movies });
+    })
+    const genres = db.Genre.findAll({
+      order: ['name'],
+    })
+    const top = db.Movie.findAll({
+      limit: 5,
+      where: {
+        rating: { [db.Sequelize.Op.gte]: 8 },
+      },
+      order: [["rating", "DESC"]],
+    })
+    Promise.all([genres,top,mejores])
+    .then(([genres,top,mejores]) => {
+      res.render("recommendedMovies.ejs", {
+          genres,
+          mejores,
+          moment,
+          top 
+      });
     })
     .catch((error) => console.log(error));
   },

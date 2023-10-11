@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Películas ordenas por fecha</title>
-    <link rel='stylesheet' href='/css/style.css' />
-</head>
-<body>
-    <figure>
-        <img src="/img/logo-DH.png" alt="Logo Digital House">
-    </figure>
-    <h1>PELIÍCULAS ORDENADASR FECHA</h1>
-    <ul>
+
+<%- include('partials/head', {title: 'SalióPeli | Agregar Película' }) %>
+
+  <!-- ----------------------------------- -->
+
+  <body class="body_moviesAdd">
+
+    <div class="">
+
+      <%- include('partials/slideBarMenu') %>
+
+    <table class="table table-hover">
+    
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Película</th>
+            <th scope="col">Fecha de estreno</th>
+
+          </tr>
+        </thead>
         <% for( let i = 0; i < movies.length; i++ ) { %>
-        <li>
-            <a href="/movies/detail/<%=movies[i].id%>"><%= movies[i].title %> </a> <br>
-            <%= 'RELEASE DATE: ' + movies[i].release_date %> 
-        </li>
+        <tbody>
+          <tr>
+            <td><%= i + 1 %></td>
+            <td> <a href="/movies/detail/<%=movies[i].id%>"><%= movies[i].title %> </a></td>
+            <td><%= moment(Movie.release_date).format('YYYY-MM-DD') %>  </td>
+          </tr>
+        </tbody>      
         <% } %>
-        
-    </ul>
+      </table>
 </body>
 </html>
