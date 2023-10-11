@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= movie.title %> </title>
-    <link rel='stylesheet' href='/css/style.css' />
 
-</head>
+<%- include('partials/head', {title: 'SalióPeli | ' + movies.title }) %>
+
 <body>
     <figure>
         <img src="/img/logo-DH.png" alt="Logo Digital House">
     </figure>
-    <h1><%= movie.title %> </h1>    
+    <ul class="nav nav-underline">
+        <li class="nav-item"><a class="nav-link" aria-current="page" href="/">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies">Listado de peliculas</a></li>
+        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/new">Ultimos estrenos</a></li>
+        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/recommended">Top 5</a></li>
+        <li class="nav-item"><a class="nav-link" aria-current="page" href="/genres">Listado de géneros</a></li>
+    </ul>
+    
+    <h1><%= movies.title %> </h1>    
     <br>
-    <p>RATING: <%= movie.rating %> </p>
-    <p>AWARDS: <%= movie.awards %> </p>
-    <p>LENGTH: <%= movie.length + ' min'%> </p>
-    <p>RELEASE DATE: <%= moment(Movie.release_date).format('YYYY-MM-DD') %> </p>
-    <br>
-    <section>
-        <a class="btn btn-secondary" href="/movies/edit/<%= movie.id %>">Editar película</a>
-        <a class="btn btn-secondary text-danger" href="/movies/delete/<%= movie.id %>">Eliminar película</a>
-    </section>
+    <p>RATING: <%= movies.rating %> </p>
+    <p>AWARDS: <%= movies.awards %> </p>
+    <p>LENGTH: <%= movies.length + ' min'%> </p>
+    <p>RELEASE DATE: <%= moment(movies.release_date).format('YYYY-MM-DD') %> </p>
+
+    <a class="btn btn-secondary" href="/movies/edit/<%= movies.id %>">Editar película</a>
+    <a class="btn btn-secondary text-danger" href="/movies/delete/<%= movies.id %>">Eliminar película</a>
+    
+    <%- include('partials/scripts') %>
 
 </body>
 </html>

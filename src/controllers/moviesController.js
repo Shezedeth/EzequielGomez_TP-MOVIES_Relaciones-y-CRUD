@@ -1,5 +1,6 @@
 const path = require("path");
 const db = require("../database/models");
+const moment = require("moment");
 const sequelize = db.sequelize;
 const { Op } = require("sequelize");
 
@@ -10,6 +11,7 @@ const moviesController = {
   list: (req, res) => {
     const movies = db.Movie.findAll({
         include: ['genre'],
+        order: ['title'],
     })
     const genres = db.Genre.findAll({
       order: ['name'],
@@ -26,14 +28,35 @@ const moviesController = {
       res.render("moviesList.ejs", {
       movies,
       genres,
+      moment,
       top 
       });
-    });
+    })
+    .catch((error) => console.log(error));
   },
   detail: (req, res) => {
-    db.Movie.findByPk(req.params.id).then((movie) => {
-      res.render("moviesDetail.ejs", { movie });
+    const movies = db.Movie.findByPk(req.params.id)
+    
+    const genres = db.Genre.findAll({
+    order: ['name'],
+  })
+    const top = db.Movie.findAll({
+    limit: 5,
+    where: {
+      rating: { [db.Sequelize.Op.gte]: 8 },
+    },
+    order: [["rating", "DESC"]],
+  })
+  Promise.all([movies,genres,top])
+  .then(([movies,genres,top]) => {
+    res.render("moviesDetail", {
+    movies,
+    genres,
+    moment,
+    top 
     });
+  })
+  .catch((error) => console.log(error));
   },
   new: (req, res) => {
     db.Movie.findAll({
@@ -41,7 +64,8 @@ const moviesController = {
       limit: 5,
     }).then((movies) => {
       res.render("newestMovies", { movies });
-    });
+    })
+    .catch((error) => console.log(error));
   },
   recomended: (req, res) => {
     db.Movie.findAll({
@@ -51,7 +75,8 @@ const moviesController = {
       order: [["rating", "DESC"]],
     }).then((movies) => {
       res.render("recommendedMovies.ejs", { movies });
-    });
+    })
+    .catch((error) => console.log(error));
   },
   //Aqui dispongo las rutas para trabajar con el CRUD
   add: function (req, res) {
@@ -71,7 +96,8 @@ const moviesController = {
           genres,
           top 
       });
-    });
+    })
+    .catch((error) => console.log(error));
    
   },
   create: function (req, res) {
@@ -86,22 +112,37 @@ const moviesController = {
       }).then((movie) => {
         console.log(movie);
         return res.redirect("/movies");
-      });
+      })
+      .catch((error) => console.log(error));
     } else {
       return res.render("moviesAdd");
     }
   },
   edit: function (req, res) {
-    db.Movie.findByPk(req.params.id)
-      .then((movie) => {
-        console.log(moment(movie.release_date).format("YYYY-MM-DD"));
-        return res.render("moviesEdit", {
-          movie,
-          Movie: movie,
-          moment,
-        });
-      })
-      .catch((error) => console.log(error));
+  
+    const movies = db.Movie.findByPk(req.params.id)
+    
+    const genres = db.Genre.findAll({
+    order: ['name'],
+  })
+    const top = db.Movie.findAll({
+    limit: 5,
+    where: {
+      rating: { [db.Sequelize.Op.gte]: 8 },
+    },
+    order: [["rating", "DESC"]],
+  })
+  Promise.all([movies,genres,top])
+  .then(([movies,genres,top]) => {
+    res.render("moviesEdit", {
+    movies,
+    genres,
+    top,
+    moment,
+    });
+  })
+  .catch((error) => console.log(error));
+  
   },
   update: function (req, res) {},
   delete: function (req, res) {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<%- include('partials/head', {title: 'Agregar Película' }) %>
+<%- include('partials/head', {title: 'SalióPeli | Agregar Película' }) %>
 
 <!-- ----------------------------------- -->
 
@@ -16,43 +16,61 @@
         <div class="form-wrapper_codingnepal">
             <h2>Agregar Película</h2>
             <form action="/movies/create" method="POST" class="form_codingnepal">
-              <div class="form-control_codingnepal">
+            
                 <!-- title -->
-                <input type="text" class="input_codingnepal" id="title"
-                 name="title" required>
-                <label>Título de la película</label>
-              </div>
-              <div class="form-control_codingnepal">
+                <div class="form-control_codingnepal">  
+                  <input type="text" class="input_codingnepal" id="title"
+                   name="title" required>
+                  <label>Título de la película</label>
+                </div>
+                
                 <!-- rating -->
-                <input class="input_codingnepal" type="number"
-                name="rating" id="rating" required>
-                <label>Rating</label>
-              </div>
-              <div class="form-control_codingnepal">
+                <div class="form-control_codingnepal">
+                  <input class="input_codingnepal" type="number"
+                  name="rating" id="rating" required>
+                  <label>Rating</label>
+                </div>
+                
                 <!-- awards -->
-                <input class="input_codingnepal" type="number"
-                name="awards" id="awards" required>
-                <label>Premios</label>
-              </div>
-              <div class="form-control_codingnepal">
+                <div class="form-control_codingnepal">
+                  <input class="input_codingnepal" type="number"
+                  name="awards" id="awards" required>
+                  <label>Premios</label>
+                </div>
+                
                 <!-- release_date -->
-                <input class="input_codingnepal" type="date"
-                name="release_date" id="release_date">
-                <label>Estreno</label>
-              </div>
-              <div class="form-control_codingnepal">
+                <div class="form-control_codingnepal">
+                  <input class="input_codingnepal" type="date"
+                  name="release_date" id="release_date">
+                  <label>Estreno</label>
+                </div>
+                
                 <!-- length -->
-                <input class="input_codingnepal" type="number"
-                name="length" id="" required>
-                <label>Duración</label>
-              </div>
-              
-              <!-- btn Agregar -->
-              <div class="button_codingnepal">
-                <button class="glow-on-hover" type="submit">Agregar</button>
-              </div>
+                <div class="form-control_codingnepal">
+                  <input class="input_codingnepal" type="number"
+                  name="length" id="" required>
+                  <label>Duración</label>
+                </div>
+                
+                 <!-- genre -->
+                 <div class="form-control_codingnepal">  
+                   
+                    <select name="genre_id" class="input_codingnepal" id="genre_id">
+                        <% genres.forEach(genre => { %>
+                            <option value="<%= genre.id %>"><%= genre.name %></option>
+                        <% }) %>   
+                    <label for="genre_id">Género</label>
+                  </div>
+                
+
               
             </form>
+            
+                            <!-- btn Agregar -->
+                <div class="button_codingnepal">
+                  <button class="glow-on-hover" type="submit">Agregar</button>
+                </div>
+            
           </div>
     
     </div>

@@ -1,0 +1,231 @@
+/* Movies List */
+
+.body_moviesList {
+  background-image: url(/img/bgPelisNegro.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: black;
+  height: 100vh;
+}
+
+.movieList_cards-box {
+  display: flex;
+  width: 100vw;
+  text-align: center;
+  font-size: 0.8rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.img__movieList {
+  width: 100%;
+}
+.moviesList__title__box {
+  background: rgba(0, 0, 0, 0.75); 
+}
+.movieList_cards-wrapper_codingnepal {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  left: 0%;
+  right: 5%;
+  top: 0%;
+  border-radius: 4px;
+  margin: 0px;
+  padding: 0px;
+  /* background: rgba(0, 0, 0, 0.75); */
+  flex-direction: column;
+  align-items: center;
+  align-content: space-around;
+  /* overflow: hidden; */
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.movieList_card_glow-on-hover {
+  width: 100vw;
+  height: 180vh;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.movieList_card_glow-on-hover:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #00000051,
+    #ffffff4e,
+    #00000051,
+    #ffffff4e,
+    #00000051,
+    #ffffff4e,
+    #00000051,
+    #ffffff4e,
+    #00000051
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  border-radius: 10px;
+}
+
+.movieList_card_glow-on-hover:active {
+}
+
+.movieList_card_glow-on-hover:active:after {
+}
+
+.movieList_card_glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.movieList_card_glow-on-hover:after {
+  /* z-index: -1; */
+  /* content: ""; */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+.text__center {
+    text-align: center;
+}
+
+.moviesList__tbody {
+text-align: start;
+}
+
+.admin__main__containerTable {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .admin__table {
+    width: 78vw;
+    /* border: solid 1px white; */
+    margin: 38px;
+  }
+  .btn__newProduct {
+    margin: 36px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    align-items: center;
+  }
+  .btn__newProduct__a {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    border: solid 1px darkgreen;
+  }
+  .admin__modalContainer {
+  }
+  .admin__modal__container {
+    display: flex;
+    /* width: 648px; */
+  }
+  .admin__modalbody {
+    padding: 0px;
+    margin: 2px;
+    border: none;
+  }
+  .admin__modalbody__card {
+    /* padding: -67px; */
+    /* margin: 1px; */
+    border: none;
+  }
+  .admin__btn__close {
+    user-select: none;
+  }
+  .admin__btn__close i {
+    /* background: #ffffff; */
+    font-size: 35px;
+    margin: -7px -31px 0px -30px;
+    color: #26ac0c;
+    /* user-select:none; */
+  }
+  .admin__modalbody__card__container {
+    /* padding: -86px; */
+    /* margin: -22px; */
+  }
+  .admin__modalbody__card__containerImagen {
+    /* border-radius: 0px; */
+    display: flex;
+    /* align-content: center; */
+    /* flex-direction: row; */
+    width: 200px;
+    height: 250px;
+    align-items: center;
+  }
+  .admin__modalbody__card__containerImagen img {
+    /* height: 100%; */
+    border-radius: 5%;
+    margin: 5px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .admin__modal__container__content {
+  }
+  .admin__modal__container__header {
+    border: none;
+  }
+  .admin__modal__container__header h5 {
+    font-size: 2rem;
+    width: 100%;
+  }
+  .admin__modal__container__footer {
+    border: none;
+  }
+  .admin__modalbody__card__container__card {
+    display: flex;
+    /* flex-wrap: nowrap; */
+    /* align-items: flex-start; */
+    /* justify-content: center; */
+    /* padding-top: 161px; */
+    /* position: relative; */
+  }
+  .admin__modalbody__card__container__card__txt {
+    /* position: absolute; */
+    /* top: -105px; */
+    text-align: center;
+  }
+  .admin__modalbody__card__container__card__txt h5 {
+  }
+  .admin__modalbody__card__container__card__txt p {
+    font-size: 35px;
+    font-weight: 600;
+  }
+  
+
+/* end Movies List */
