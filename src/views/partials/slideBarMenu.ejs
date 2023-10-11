@@ -1,0 +1,142 @@
+<!--***** sidebar menu *****-->
+
+<body class="body_sidebarMenu">
+    <div class="sidebar close">
+        <div class="logo-details">
+            <a class="a__actorbox" href="/">
+                <i
+                    class="custom__icons__slidebar_logo">
+                    <img src="/img/icon_salioPeli_blanco.svg" alt="">
+                </i>
+
+            </a>
+            <span class="logo_name">SalióPeli</span>
+        </div>
+        <ul class="nav-links">
+
+            <!-- movie list -->
+            <li>
+                <a href="/movies">
+                    <i
+                        class="fa-solid fa-list animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite"></i>
+                    <span class="link_name">Peliculas</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="/genres">Listado de Peliculas</a></li>
+                </ul>
+            </li>
+
+            <!-- genre list -->
+            <li>
+                <div class="iocn-link">
+                    <a href="#">
+                        <i
+                            class="fa-solid fa-masks-theater animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite"></i>
+                        <span class="link_name">Generos</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="/genres">Listado de Generos</a></li>
+                    <% genres.forEach(genre => { %>
+                        <li><a href="/genres/><%= genre.id %>"><%= genre.name %></a></li>
+                    <% }) %>
+                </ul>
+            </li>
+
+
+            <!-- actors list -->
+            <li>
+                <a class="a__actorbox" href="#">
+                    <i
+                        class="custom__icons__slidebar animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite">
+                        <img src="/img/actor-white.svg" alt="">
+                    </i>
+                    <span class="link_name">Actores</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="/movies/add">Listado de Actores</a></li>
+                </ul>
+            </li>
+
+            <!-- top 5 -->
+            <li>
+                <div class="iocn-link">
+                    <a href="#">
+                        <i
+                            class="fa-solid fa-ranking-star animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite"></i>
+                        <span class="link_name">Top</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="/movies/recommended">Más votadas</a></li>
+
+                    <% for( let i=0; i < top.length; i++ ) { %>
+
+                        <li> <a href="/movies/detail/<%=top[i].id%>">
+                                <%= i + 1 %>
+                                    <%= top[i].title %>
+                            </a></li>
+
+                        <% } %>
+
+                </ul>
+            </li>
+
+            <!-- latest movies -->
+            <li>
+                <a href="#">
+                    <i
+                        class="custom__icons__slidebar animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite">
+                        <img src="/img/cine.svg" alt="">
+                    </i>
+                    <span class="link_name">Estrenos</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="/movies/new">Ultimos estrenos</a></li>
+                </ul>
+            </li>
+
+            <!-- add movie -->
+            <li>
+                <a href="/movies/add">
+                    <i
+                        class="custom__icons__slidebar animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite">
+                        <img src="/img/addMovie.svg" alt="">
+                    </i>
+                    <span class="link_name">Agregar Peliculas</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="/movies/add">Agregar</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+    <section class="home-section">
+        <div class="home-content">
+            <i class='bx bx-menu'></i>
+            <span class="text"></span>
+        </div>
+    </section>
+
+    <!--***** script slidebar *****-->
+    <script>
+        let arrow = document.querySelectorAll(".arrow");
+        for (var i = 0; i < arrow.length; i++) {
+            arrow[i].addEventListener("click", (e) => {
+                let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+                arrowParent.classList.toggle("showMenu");
+            });
+        }
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".bx-menu");
+        console.log(sidebarBtn);
+        sidebarBtn.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        });
+
+    </script>
+
+    <!--***** end sidebar menu *****-->

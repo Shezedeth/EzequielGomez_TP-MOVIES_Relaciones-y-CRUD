@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head', {title: 'Listado de géneros' }) %>
+
+<body>
+    <figure>
+        <img src="/img/logo-DH.png" alt="Logo Digital House">
+      </figure>
+      
+      <ul class="nav nav-underline">
+        <li class="nav-item"><a class="nav-link" aria-current="page" href="/">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies">Listado de peliculas</a></li>
+        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/new">Ultimos estrenos</a></li>
+        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/recommended">Top 5</a></li>
+      </ul>
+      
+    <h1>LISTADO DE GENEROS</h1>
+    <ul class="list-group">
+        <% for( let i = 0; i < genres.length; i++ ) { %>
+        <li>
+            <a class="list-group-item list-group-item-action" href="/genres/detail/<%= genres[i].id %>"><%= genres[i].name %></a>
+        </li>
+        <% } %>
+
+    </ul>
+    
+    
+    <%- include('partials/scripts') %>
+    
+</body>
+
+</html>
