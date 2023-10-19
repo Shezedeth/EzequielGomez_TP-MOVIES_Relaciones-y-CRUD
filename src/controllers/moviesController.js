@@ -59,6 +59,10 @@ const moviesController = {
   .catch((error) => console.log(error));
   },
   new: (req, res) => {
+    
+    const moviesNewest = db.Movie.findAll({
+      order: [["release_date", "DESC"]],
+    })
     const movies = db.Movie.findByPk(req.params.id)
     
     const genres = db.Genre.findAll({
@@ -71,9 +75,10 @@ const moviesController = {
     },
     order: [["rating", "DESC"]],
   })
-  Promise.all([movies,genres,top])
-  .then(([movies,genres,top]) => {
-    res.render("moviesDetail", {
+  Promise.all([moviesNewest, movies, genres, top])
+  .then(([moviesNewest,movies,genres,top]) => {
+    res.render("newestMovies", {
+    moviesNewest,
     movies,
     genres,
     moment,
@@ -132,7 +137,7 @@ const moviesController = {
    
   },
   create: function (req, res) {
-    if (errors.isEmpty()) {
+    
       const { title, rating, release_date, awards, length } = req.body;
       db.Movie.create({
         title: title.trim(),
@@ -145,9 +150,7 @@ const moviesController = {
         return res.redirect("/movies");
       })
       .catch((error) => console.log(error));
-    } else {
-      return res.render("moviesAdd");
-    }
+
   },
   edit: function (req, res) {
   
@@ -175,7 +178,34 @@ const moviesController = {
   .catch((error) => console.log(error));
   
   },
-  update: function (req, res) {},
+  update: function (req, res) {
+
+    const { title, rating, release_date, awards, length } = req.body;
+
+    db.Movie.update(
+      {
+        title: title.trim(),
+        rating,
+        awards,
+        release_date,
+        length,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    )
+
+      .then((response) => {
+        console.log(response);
+        return res.redirect("/movies/detail/" + req.params.id);
+      })
+      .catch((error) => console.log(error));
+
+    
+  },
+  
   delete: function (req, res) {
     db.Movie.findByPk(req.params.id)
       .then((movie) => {
@@ -185,7 +215,39 @@ const moviesController = {
       })
       .catch((error) => console.log(error));
   },
-  destroy: function (req, res) {},
+  destroy: function (req, res) {
+    // TODO
+    const { id } = req.params;
+
+    db.ActorMovie.destroy({
+      where: {
+        movie_id: id,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+
+        db.Actor.update(
+          {
+            favorite_movie_id: null,
+          },
+          {
+            where: {
+              favorite_movie_id: id,
+            },
+          }
+        ).then((response) => {
+          console.log(response);
+          db.Movie.destroy({
+            where: { id },
+          }).then((response) => {
+            console.log(response);
+            return res.redirect("/movies");
+          });
+        });
+      })
+      .catch((error) => console.log(error));
+  },
 };
 
 module.exports = moviesController;

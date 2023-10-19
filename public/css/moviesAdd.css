@@ -1,13 +1,5 @@
 /* ---------------------------------- */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap");
-.body_moviesAdd {
-    background-image: url(/img/bgPelisNegro.webp);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-color: black;
-    height: 100vh;
-  }
 
 .moviesAdd_box {
   display: flex;
@@ -53,14 +45,17 @@
 }
 
 .form-wrapper_codingnepal {
-  position: absolute;
+  display: flex;
+  /* position: absolute; */
   height: 100vh;
-  /* left: 100%; */
   top: 5%;
   border-radius: 4px;
-  padding: 15px 15px 15px 15px;
-  width: 68vw;
+  padding: 35px 15px 15px 15px;
+  width: 66vw;
   background: rgba(0, 0, 0, 0.75);
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
 }
 .form-wrapper_codingnepal h2 {
   display: flex;
@@ -304,13 +299,18 @@ margin: 0px 0px 0px 0px;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-body {
+.body_moviesAdd {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: rgb(251, 106, 106);
+  background-image: url(/img/bgPelisNegro.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: black;
+  height: 100vh;
 }
 .container {
   position: relative;

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<%- include('partials/head', {title: 'SalióPeli | ORDENADAS POR RATING' }) %>
+<%- include('partials/head', {title: 'SalióPeli | Ultimos estrenos' }) %>
 
   <!-- ----------------------------------- -->
 
@@ -11,27 +11,36 @@
       
     <div class="movieList_cards-wrapper_codingnepal">
     
-    <h1 class="text-light">PEÍCULAS ORDENADAS POR POSICIÓN</h1>
-    <table class="table table-hover">
     
-        <thead>
-          <tr>
-            <th class="text-center" scope="col">#</th>
-            <th scope="col">Pelicula</th>
-            <th scope="col">Rating</th>
-
-          </tr>
-        </thead>
-        <% for( let i = 0; i < mejores.length; i++ ) { %>
-        <tbody>
-          <tr>
-            <td class="text-center"><%= i + 1 %></td>
-            <td> <a class="text-dark" href="/movies/detail/<%= mejores[i].id%>"><%= mejores[i].title %> </a></td>
-            <td><%= 'RATING: ' + mejores[i].rating %> </td>
-          </tr>
-        </tbody>      
-        <% } %>
-      </table>
+    
+    <div class="recommendedMovies__container-table">
+      <div class="recommendedMovies__container-box-table">
+        <h1 class="text-light">PELÍCULAS ORDENADAS POR RATING</h1>
+        <table class="table table-hover">
+      
+          <thead>
+            <tr>
+              <th class="text-center" scope="col">#</th>
+              <th scope="col">Pelicula</th>
+              <th scope="col">Rating</th>
+  
+            </tr>
+          </thead>
+          <% for( let i = 0; i < mejores.length; i++ ) { %>
+          <tbody>
+            <tr>
+              <td class="text-center"><%= i + 1 %></td>
+              <td> <a class="text-dark" href="/movies/detail/<%= mejores[i].id%>"><%= mejores[i].title %> </a></td>
+              <td><%= 'RATING: ' + mejores[i].rating %> </td>
+            </tr>
+          </tbody>      
+          <% } %>
+        </table>
+      
+      </div>
+    </div>
+    
+    
     
     
     </div>

@@ -8,6 +8,7 @@
 }
 .sidebar {
   position: fixed;
+  padding-top: 3%;
   top: 0;
   left: 0;
   height: 100vh;
@@ -210,9 +211,9 @@
   font-size: 12px;
 }
 .home-section {
-  position: relative;
-  height: 100vh;
-  left: 380px;
+  /* position: relative; */
+  /* height: 100vh; */
+  /* left: 380px; */
   width: calc(100% - 260px);
   transition: all 0.5s ease;
 }
@@ -223,12 +224,13 @@
 .home-section .home-content {
   height: 0px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   padding: 0px 0px 0px 0px;
   position: absolute;
-  top: 2%;
-  left: -721px;
+  top: 0%;
+  left: 0%;
+  align-items: stretch;
 }
 .home-section .home-content .bx-menu,
 .home-section .home-content .text {
@@ -236,10 +238,10 @@
   font-size: 35px;
 }
 .home-section .home-content .bx-menu {
-  margin: 0 0px;
-  padding: 0px 0px 0px 0px;
+  /* margin: -1px -2px; */
+  padding: 0px 0px 0px 22px;
   cursor: pointer;
-  z-index: 1;
+  z-index: 444;
   color: red;
   background: black;
   position: fixed;

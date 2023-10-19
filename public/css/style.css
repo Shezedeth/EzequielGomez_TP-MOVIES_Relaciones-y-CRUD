@@ -3,6 +3,10 @@
 @import './movieList.css';
 @import './home.css';
 @import './genreList.css';
+@import './recommendedMovies.css';
+@import './newestMovies.css';
+@import './moviesDetail.css';
+
 
 
 * {
