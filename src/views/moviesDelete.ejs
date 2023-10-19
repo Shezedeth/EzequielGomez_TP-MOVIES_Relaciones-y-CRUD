@@ -4,27 +4,36 @@
 <%- include('partials/head', {title: Movie.title }) %>
 
 
-    <body class="bg-dark">
-        <figure>
-            <img class="bg-white" src="/img/logo-DH.png" alt="Logo Digital House">
-        </figure>
+    <body class="moviesDelete__body">
+
         <div class="col-12 col-md-10 col-lg-12 mx-auto">
 
-            <h1 class="text-center animate__animated animate__jackInTheBox text-danger">Estás seguro de que quieres borrar la película <span class="text-warning"><%= Movie.title %></span>???</h1>
-            <p>
-            <form class="text-center" action="/movies/delete/<%= Movie.id %>?_method=DELETE" method="POST">
-                <br>
-                <button class="btn btn-danger fw-bold" type="submit">Borrar la Película</button>
+            <div class="moviesDelete__container">
 
-                
-                    
+
+
+                <h1 class="text-center animate__animated animate__jackInTheBox text-danger">Estás seguro de que quieres <br>
+                    borrar la película <span class="text-warning">
+                        <%= Movie.title %>
+                    </span>???</h1>
+                <p>
+                <form class="text-center" action="/movies/delete/<%= Movie.id %>?_method=DELETE" method="POST">
+                    <br>
+                    <button class="btn btn-danger fw-bold" type="submit">Borrar la Película</button>
+
+
+
                     <a class="btn btn-secondary" href="/movies">Volver</a>
-                
 
-            </form>
-            </p>
+
+                </form>
+                </p>
+
+            </div>
 
         </div>
+
+
 
         <%- include('partials/scripts') %>
 

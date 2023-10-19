@@ -1,31 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
-<%- include('partials/head', {title: 'SalióPeli | ' + movies.title }) %>
+<%- include('partials/head',{title: movies.title }) %>
 
-<body class="body__moviesDetail">
-    <figure>
-        <img src="/img/logo-DH.png" alt="Logo Digital House">
-    </figure>
-    <ul class="nav nav-underline">
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="/">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies">Listado de peliculas</a></li>
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/new">Ultimos estrenos</a></li>
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/recommended">Top 5</a></li>
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="/genres">Listado de géneros</a></li>
-    </ul>
+<!-- ----------------------------------- -->
+
+<body class="body_moviesAdd">
+
+  <div class="body_codingnepal">
+
+    <%- include('partials/slideBarMenu') %>
+
+    <div class="moviesAdd_box">
     
-    <h1><%= movies.title %> </h1>    
-    <br>
-    <p>RATING: <%= movies.rating %> </p>
-    <p>AWARDS: <%= movies.awards %> </p>
-    <p>LENGTH: <%= movies.length + ' min'%> </p>
-    <p>RELEASE DATE: <%= moment(movies.release_date).format('YYYY-MM-DD') %> </p>
-
-    <a class="btn btn-secondary" href="/movies/edit/<%= movies.id %>">Editar película</a>
-    <a class="btn btn-secondary text-danger" href="/movies/delete/<%= movies.id %>">Eliminar película</a>
+        <div class="form-wrapper_codingnepal">
+          
+            
+            <div class="moviesAdd_box_Form">
+              <section class="container">
+                <header><%= movies.title %></header>
+                <form class="form">
+  
+                  <div class="column">
+  
+                    <!-- rating -->
+                    <div class="input-box">
+                      <label>Rating</label>
+                      <input name="rating" id="rating" type="number" placeholder="Rating" value="<%= movies.rating %>" required />
+                    </div>
+  
+                    <!-- awards -->
+                    <div class="input-box">
+                      <label>Awards</label>
+                      <input name="awards" id="awards" type="number" placeholder="Awards" value="<%= movies.awards %>" required />
+                    </div>
+  
+                    <!-- length -->
+                    <div class="input-box">
+                      <label>Duracion</label>
+                      <input name="length" id="length" type="number" placeholder="Duracion" value="<%= movies.length %>" required />
+                    </div>
+  
+                    <!-- release_date -->
+                    <div class="input-box">
+                      <label>Estreno</label>
+                      <input name="release_date" id="release_date" type="date" placeholder="Estreno" value="<%= moment(movies.release_date).format('YYYY-MM-DD') %>" required />
+                    </div>
+  
+                  </div>
+  
+                  <!-- genre -->
+                  <div class="column">
+                    <div class="input-box">
+                      <label>Género</label>
+                      <div class="select-box">
+                        <select name="genre_id" id="genre_id">
+                        <% genres.forEach(genre => { %>
+                          <option value="<%= genre.id %>" <%= genre.id === movies.genre_id && 'selected' %> ><%= genre.name %></option>
+                        <% }) %>
+                        </select>
+                      </div>
+                    </div>
+  
+                  </div>
+  
+                  <!-- Actors -->
+                  <div class="gender-box">
+                    <h3>Actores</h3>
+                    <div class="gender-option">
+                      <div class="gender">
+                        <input type="radio" id="check-male" name="gender" checked />
+                        <label for="check-male">pepe</label>
+                      </div>
+  
+                    </div>
+                  </div>
+  
+                  <!-- btns -->
+                  <div class="moviesDetail__btns">
+                  
+                      <div class="button_codingnepal moviesDetail__btns__container">
+                        <a href="/movies/edit/<%= movies.id %>" class="glow-on-hover moviesDetail__btns__a">
+                            <p class="moviesDetail__btns__p">Editar</p>
+                        </a>
+                      </div>
+                      <div class="button_codingnepal moviesDetail__btns__container">
+                        <a href="/movies/delete/<%= movies.id %>" class="glow-on-hover moviesDetail__btns__a">
+                            <p class="moviesDetail__btns__p">Eliminar</p>
+                        </a>
+                      </div>
+                  
+                  </div>
+                  
+                </form>
+              </section>
+            </div>
+          </div>
     
-    <%- include('partials/scripts') %>
-
+    </div>
+      
+  </div>
+  
+  <%- include('partials/scripts') %>
 </body>
+<!-- ---------------------------------- -->
+<footer>
+
+</footer>
+
 </html>

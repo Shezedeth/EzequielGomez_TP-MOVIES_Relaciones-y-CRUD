@@ -1,0 +1,15 @@
+.moviesDelete__body {
+  background-color: black;
+  display: flex;
+  height: 100wh;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.moviesDelete__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 640px;
+  background-color: #333;
+}

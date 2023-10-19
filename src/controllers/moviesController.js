@@ -154,7 +154,18 @@ const moviesController = {
   },
   edit: function (req, res) {
   
-    const movies = db.Movie.findByPk(req.params.id)
+    const movies = db.Movie.findByPk(req.params.id,{
+        include : ['actors']
+    
+    });
+       
+    const actors = db.Actor.findAll({
+    
+      order : [
+        ['first_name','ASC'],
+        ['last_name','ASC']
+      ]
+    })
     
     const genres = db.Genre.findAll({
     order: ['name'],
@@ -166,12 +177,13 @@ const moviesController = {
     },
     order: [["rating", "DESC"]],
   })
-  Promise.all([movies,genres,top])
-  .then(([movies,genres,top]) => {
+  Promise.all([movies,genres,top,actors])
+  .then(([movies,genres,top,actors]) => {
     res.render("moviesEdit", {
     movies,
     genres,
     top,
+    actors,
     moment,
     });
   })
