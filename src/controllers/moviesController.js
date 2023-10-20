@@ -141,11 +141,10 @@ const moviesController = {
       },
       order: [["rating", "DESC"]],
     })
-    Promise.all([genres,top,actors])
-    .then(([genres,top]) => {
+    Promise.all([actors,genres,top,])
+    .then(([actors,genres,top]) => {
       res.render("moviesAdd", {
           genres,
-  
           actors,
           top 
       });
@@ -157,6 +156,7 @@ const moviesController = {
   create: function (req, res) {
     
       const { title, rating, release_date, awards, length, genre_id } = req.body;
+      const actors = [req.body.actors].flat()
       
       db.Movie.create({
         title: title.trim(),
@@ -169,7 +169,24 @@ const moviesController = {
       })
       .then((movie) => {
         console.log(movie);
-        return res.redirect("/movies");
+        if(actors){
+          const actorsDB = actors.map(actor => {
+            return {
+              movie_id : movie.id,
+              actor_id : actor
+            }
+          })
+          db.Actor_Movie.bulkCreate(actorsDB,{
+            validate : true
+            
+          }).then(() => {
+            console.log('Actores agregados');
+            return res.redirect('/movies')
+          })
+        }else {
+         return res.redirect("/movies");
+        }
+       
       })
       .catch((error) => console.log(error));
 
