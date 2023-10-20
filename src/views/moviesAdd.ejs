@@ -15,12 +15,20 @@
           <div class="moviesAdd_box_Form">
             <section class="container">
               <header>Agregar Película</header>
-              <form action="/movies/create" method="POST" class="form">
+              <form action="/movies/create" method="POST" class="form" enctype="multipart/form-data">
 
                 <!-- title -->
                 <div class="input-box">
                   <label>Titulo de la Película</label>
                   <input name="title" id="title" type="text" placeholder="Titulo de la Película" required />
+                </div>
+                
+                <!-- image -->
+                <div class="input-box">
+                  <label>Imagen</label>
+                  <input  type="file"
+                  id="image"
+                  name="image"/>
                 </div>
 
                 <div class="column">
@@ -48,8 +56,21 @@
                     <label>Estreno</label>
                     <input name="release_date" id="release_date" type="date" placeholder="Estreno" required />
                   </div>
+                  
 
                 </div>
+                <!--
+                <div class="form-group">
+                  <label class="form-group__label" for="image">Imagen:</label>
+                  <input
+                    class="form-group__input"
+                    type="file"
+                    id="image"
+                    name="image"
+                  
+                  />
+                </div> -->
+                
 
                 <!-- genre -->
                 <div class="column">
@@ -68,6 +89,7 @@
 
                 <!-- Actors -->
                 <div class="row">
+                  <h4>Actores</h4>
                   <% actors.forEach(actor=> { %>
                       <div class="col-12 col-md-3 col-lg-2">
                           <div class="form-check">

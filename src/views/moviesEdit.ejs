@@ -79,7 +79,7 @@
                       
                       <div class="form-check">
                       
-                        <input name="actor" type="checkbox" <%= movies.actors.map(actor => actor.id).includes(actor.id) && 'checked' %> id="actor<%= actor.id %>" value="<%= actor.id %>"/>
+                        <input name="actors" type="checkbox" <%= movies.actors.map(actor => actor.id).includes(actor.id) && 'checked' %> id="actor<%= actor.id %>" value="<%= actor.id %>"/>
                         <label for="actor<%= actor.id %>">
                           
                             <%= actor.first_name %> <%= actor.last_name %>
