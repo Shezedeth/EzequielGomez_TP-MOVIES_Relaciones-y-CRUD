@@ -3,31 +3,157 @@
 
 <%- include('partials/head', {title: 'Listado de géneros' }) %>
 
-<body>
-    <figure>
-        <img src="/img/logo-DH.png" alt="Logo Digital House">
-      </figure>
-      
-      <ul class="nav nav-underline">
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="/">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies">Listado de peliculas</a></li>
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/new">Ultimos estrenos</a></li>
-        <li class="nav-item"><a class="nav-link" aria-current="page" href="/movies/recommended">Top 5</a></li>
-      </ul>
-      
-    <h1>LISTADO DE GENEROS</h1>
-    <ul class="list-group">
-        <% for( let i = 0; i < genres.length; i++ ) { %>
-        <li>
-            <a class="list-group-item list-group-item-action" href="/genres/detail/<%= genres[i].id %>"><%= genres[i].name %></a>
-        </li>
-        <% } %>
+  <body class="body_moviesList">
 
-    </ul>
-    
-    
+    <div class="movieList__body_codingnepal">
+
+      <%- include('partials/slideBarMenu') %>
+        <!-- *************************************** -->
+
+        <div class="movieList_cards-wrapper_codingnepal">
+          <div class="movieList_cards-box">
+
+            <main class="admin__main">
+              <h1 class="text-light bg-dark">LISTADO DE GÉNEROS</h1>
+              <div class="admin__main__containerTable bg-dark">
+
+                <table class="table table-dark table-hover admin__table ">
+
+                  <thead class="admin__table__thead">
+                    <tr>
+                      <th class="bg-dark text-white" scope="col">#</th>
+
+                      <th class="bg-dark text-white" scope="col">Nombre</th>
+
+                      <th class="bg-dark text-white" scope="col">Ranking</th>
+
+                      <th class="bg-dark text-white" scope="col">Active</th>
+
+                      <th class="bg-dark text-white" scope="col">Películas</th>
+
+                      <th class="bg-dark text-white" scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody class="moviesList__tbody">
+                    <% genres.forEach(genre=> { %>
+                      <tr>
+                        <th class="bg-dark text-white " scope="row">
+                          <%= genre.id %>
+                        </th>
+
+                        <td class="bg-dark text-white ">
+
+                          <a href="/genres/detail/<%= genre.id %>">
+                            <%= genre.name %>
+                          </a>
+
+                        </td>
+
+                        <td class="bg-dark text-white text__center">
+                          <%= genre.ranking %>
+                        </td>
+
+                        <td class="bg-dark text-white text__center">
+
+                          <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" <%=genre.active && 'checked'
+                              %>>
+                          </div>
+
+                        </td>
+                        
+                        
+
+                        <td>
+
+                          <select class="form-select" aria-label="Default select example" id="">
+
+                            <% genre.movies.forEach(movie=> { %>
+                              <option value="1"><a href="">
+                                  <%= movie.title %>
+                                </a></option>
+                              <% }) %>
+
+                          </select>
+
+                        </td>
+
+
+
+
+                        <td>
+                          <div class="d-flex justify-content-center gap-1">
+
+                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                              data-bs-target="#detailProduct<%= genre.id %>">
+                              <i class="fas fa-eye"></i>
+                            </button>
+
+                            <div class="modal fade admin__modalContainer" id="detailProduct<%= genre.id %>"
+                              tabindex="-1" aria-labelledby="detailProduct<%= genre.id %>Label" aria-hidden="true">
+                              <div class="modal-dialog  modal-dialog-centered text-white admin__modal__container">
+                                <div class="modal-content bg-dark admin__modal__container__content">
+                                  <div class="modal-header admin__modal__container__header">
+                                    <h5 class="modal-title" id="detailProduct<%= genre.id %>Label">
+                                      <%= genre.title %>
+                                    </h5>
+                                    <button type="button" class="btn-close admin__btn__close" data-bs-dismiss="modal"
+                                      aria-label="Close">
+                                      <i class="fa-solid fa-xmark"></i></button>
+                                  </div>
+                                  <div class="modal-body admin__modalbody">
+                                    <div class="card mb-3 bg-dark  admin__modalbody__card">
+                                      <div class="row g-0 bg-dark  admin__modalbody__card__container">
+                                        <div class="col-md-6 admin__modalbody__card__containerImagen">
+                                          <img class="card-img-top" src="/img/image-default.gif"
+                                            class="img-fluid rounded-start" alt="...">
+                                        </div>
+                                        <div class="col-md-6 admin__modalbody__card__container__card">
+                                          <div class="card-body admin__modalbody__card__container__card__txt">
+                                            <h5 class="card-text bg-dark text-white">
+                                              imagen no disponible
+                                            </h5>
+
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <a class="btn btn-sm btn-success" href="/genres/edit/<%= genre.id %>"><i
+                                class="fas fa-edit"></i></a>
+
+                            <!-- Button trigger modal -->
+                            <a href="/genres/delete/<%= genre.id %>" type="button" class="btn btn-sm btn-danger">
+
+                              <i class="fas fa-trash"></i>
+                            </a>
+
+                          </div>
+                        </td>
+                      </tr>
+                      <% }) %>
+                  </tbody>
+                </table>
+
+              </div>
+
+            </main>
+
+
+
+
+          </div>
+        </div>
+
+    </div>
+
+    <!-- *************************************** -->
+
     <%- include('partials/scripts') %>
-    
-</body>
+
+  </body>
 
 </html>

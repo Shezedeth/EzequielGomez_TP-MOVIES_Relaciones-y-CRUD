@@ -13,6 +13,7 @@ const {
   edit,
 } = require("../controllers/moviesController");
 
+
 router
   .get("/movies", list)
   .get("/movies/new", newest)
