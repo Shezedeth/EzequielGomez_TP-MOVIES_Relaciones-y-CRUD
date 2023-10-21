@@ -13,7 +13,7 @@
 }
 .moviesAdd_box_Form {
 margin: 0px 0px 0px 0px;
-width: 100vw;
+/* width: 68vw; */
 }
 
 .body_codingnepal {
@@ -315,7 +315,7 @@ margin: 0px 0px 0px 0px;
 }
 .container {
   position: relative;
-  max-width: 754px;
+  max-width: 823px;
   width: 100%;
   background: #fff;
   padding: 25px;

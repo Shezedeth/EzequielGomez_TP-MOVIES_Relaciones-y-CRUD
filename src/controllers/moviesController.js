@@ -37,7 +37,10 @@ const moviesController = {
   },
 // -------------------------------------------------------------------
   detail: (req, res) => {
-    const movies = db.Movie.findByPk(req.params.id)
+    const movies = db.Movie.findByPk(req.params.id,{
+      include: ['actors','genre']
+      
+    })
     
     const genres = db.Genre.findAll({
     order: ['name'],
@@ -52,7 +55,7 @@ const moviesController = {
   Promise.all([movies,genres,top,])
   .then(([movies,genres,top]) => {
     res.render("moviesDetail", {
-    movies,
+    ...movies.dataValues,
     genres,
     moment,
     top 
@@ -165,7 +168,7 @@ const moviesController = {
         release_date,
         length,
         genre_id,
-        image : req.file ? req.file.fiilename : null
+        image : req.file ? req.file.filename : null
         
       })
       .then((movie) => {
