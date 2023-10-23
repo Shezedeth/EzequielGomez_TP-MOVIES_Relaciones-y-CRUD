@@ -3,16 +3,27 @@ const db = require("../database/models");
 const moment = require("moment");
 const sequelize = db.sequelize;
 const { Op } = require("sequelize");
+const fetch = require('node-fetch');
+const paginate = require('express-paginate')
+
 
 //Aqui tienen una forma de llamar a cada uno de los modelos
 // const {Movies,Genres,Actor} = require('../database/models');
 
+const API = 'http://www.omdbapi.com/?apikey=ece0405c';
+
+
+
 const moviesController = {
 // -------------------------------------------------------------------
   list: (req, res) => {
+ 
+  
     const movies = db.Movie.findAll({
         include: ['genre'],
         order: ['title'],
+        limit : req.query.limit,
+        offset :req.skip
     })
     const genres = db.Genre.findAll({
       order: ['name'],
@@ -26,8 +37,15 @@ const moviesController = {
     })
     Promise.all([movies,genres,top])
     .then(([movies,genres,top]) => {
+     
+      const pagesCount = Math.ceil(movies.length / req.query.limit)
+      
       res.render("moviesList.ejs", {
       movies,
+      page : paginate.getArrayPages(req)(pagesCount, pagesCount, req.query.page),
+      paginate,
+      pagesCount,
+      currentPages : req.query.page,
       genres,
       moment,
       top 
@@ -250,6 +268,7 @@ const moviesController = {
             release_date,
             genre_id,
             length,
+            image : req.file ? req.filaname : null
           },
           {
             where : {
@@ -328,6 +347,25 @@ const moviesController = {
       })
       .catch((error) => console.log(error));
   },
+  buscar: (req, res) => {
+    const title = req.query.titulo;
+    
+    fetch(`${API}&t=${title}`)
+        .then(data => {
+            return data.json()
+        })
+        .then(movie => {
+            // console.log(movie)
+            return res.render('moviesDetailOmdb',{
+                movie
+            })
+        })
+        .catch(error => console.log(error))
+    
+   
+    
+},
+  
 };
 
 module.exports = moviesController;

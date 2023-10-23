@@ -1,7 +1,10 @@
 const express = require('express');
 const path = require('path');
 const methodOverride =  require('method-override'); // Pasar poder usar los métodos PUT y DELETE
+const paginate = require('express-paginate')
 const app = express();
+
+
 
 
 const indexRouter = require('./routes/index');
@@ -19,6 +22,7 @@ app.use(express.static(path.resolve(__dirname, '../public')));
 app.use(express.urlencoded({ extended: false }));
 
 app.use(methodOverride('_method'));
+
 
 app.use('/', indexRouter);
 app.use(moviesRoutes);

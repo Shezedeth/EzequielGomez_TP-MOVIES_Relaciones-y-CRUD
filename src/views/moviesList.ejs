@@ -18,6 +18,43 @@
                             <div class="admin__main__containerTable bg-dark">
 
                                 <table class="table table-dark table-hover admin__table ">
+                                
+                                
+                                    <div class="pagination">
+                                        <% if (paginate.hasPreviousPages || paginate.hasNextPages(pagesCount)) { %>
+                                            <% if (paginate.hasPreviousPages) { %>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="<%=paginate.href(true).prev%>"
+                                                        aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                    </a>
+                                                </li>
+                                                <% } %>
+                                                    <% if (pages) { %>
+                                                        <% pages.forEach(page=> { %>
+                                                            <li class="page-number">
+                                                                <a href="<%= page.url %>"
+                                                                    class="page-link <%= page.number === currentPage && 'active' %> ">
+                                                                    <%= page.number%>
+                                                                </a>
+
+                                                            </li>
+                                                            <% }) %>
+                                                                <% } %>
+                                                                    <% if (paginate.hasNextPages(pagesCount)) { %>
+                                                                        <li class="page-item">
+                                                                            <a class="page-link"
+                                                                                href="<%=paginate.href()%>"
+                                                                                aria-label="Next">
+                                                                                <span aria-hidden="true">&raquo;</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <% } %>
+
+                                                                            <% } %>
+
+                                                                              
+                                    </div>
 
                                     <thead class="admin__table__thead">
                                         <tr>
@@ -99,8 +136,7 @@
                                                                         </h5>
                                                                         <button type="button"
                                                                             class="btn-close admin__btn__close"
-                                                                            data-bs-dismiss="modal"
-                                                                            aria-label="Close">
+                                                                            data-bs-dismiss="modal" aria-label="Close">
                                                                             <i class="fa-solid fa-xmark"></i></button>
                                                                     </div>
                                                                     <div class="modal-body admin__modalbody">
@@ -140,8 +176,9 @@
                                                                 class="fas fa-edit"></i></a>
 
                                                         <!-- Button trigger modal -->
-                                                        <a href="/movies/delete/<%= movies[i].id %>" type="button" class="btn btn-sm btn-danger">
-                                                    
+                                                        <a href="/movies/delete/<%= movies[i].id %>" type="button"
+                                                            class="btn btn-sm btn-danger">
+
                                                             <i class="fas fa-trash"></i>
                                                         </a>
 

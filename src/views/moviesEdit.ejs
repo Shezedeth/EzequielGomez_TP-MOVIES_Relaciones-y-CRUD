@@ -19,7 +19,7 @@
             <div class="moviesAdd_box_Form">
               <section class="container">
                 <header>Editar Película</header>
-                <form action="/movies/update/<%= movies.id %>?_method=PUT" method="POST" class="form">
+                <form action="/movies/update/<%= movies.id %>?_method=PUT" method="POST" class="form" enctype="multipart/form-data">
   
                   <!-- title -->
                   <div class="input-box">
