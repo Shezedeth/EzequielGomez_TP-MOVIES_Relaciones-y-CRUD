@@ -9,7 +9,7 @@ const genresController = {
         order: ['title'],
     })
     const genres = db.Genre.findAll({
-      order: ['name'],
+      order: ['id'],
       include : ['movies']
     })
     const top = db.Movie.findAll({

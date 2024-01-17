@@ -1,0 +1,9 @@
+
+.moviesEdit__img__container {display: flex;flex-direction: column;align-items: center;}
+
+.moviesEdit__img {
+
+display: flex;
+
+width: 30%;
+}

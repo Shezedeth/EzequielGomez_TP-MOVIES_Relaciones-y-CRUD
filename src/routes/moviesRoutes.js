@@ -12,7 +12,7 @@ const {
   update,
   edit,
 } = require("../controllers/moviesController");
-const uploadOneImage = require('../middlewares/upload');
+const upload = require('../middlewares/upload');
 
 
 router
@@ -22,9 +22,9 @@ router
   .get("/movies/detail/:id", detail)
   //Rutas exigidas para la creación del CRUD
   .get("/movies/add", add)
-  .post("/movies/create", uploadOneImage.single('image'), create)
+  .post("/movies/create", upload.single('image'), create)
   .get("/movies/edit/:id", edit)
-  .put("/movies/update/:id", uploadOneImage.single('image'), update)
+  .put("/movies/update/:id", upload.single('image'), update)
   .get("/movies/delete/:id", remove)
   .delete("/movies/delete/:id", destroy);
 

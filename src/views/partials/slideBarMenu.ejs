@@ -39,7 +39,7 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="/genres">Listado de Generos</a></li>
                     <% genres.forEach(genre => { %>
-                        <li><a href="/genres/><%= genre.id %>"><%= genre.name %></a></li>
+                        <li><a href="/genres/detail/<%= genre.id %>"><%= genre.name %></a></li>
                     <% }) %>
                 </ul>
             </li>

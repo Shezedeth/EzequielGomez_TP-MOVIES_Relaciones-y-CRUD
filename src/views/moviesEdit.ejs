@@ -3,100 +3,120 @@
 
 <%- include('partials/head',{title: movies.title }) %>
 
-<!-- ----------------------------------- -->
+  <!-- ----------------------------------- -->
 
-<body class="body_moviesAdd">
+  <body class="body_moviesAdd">
 
-  <div class="body_codingnepal">
+    <div class="body_codingnepal">
 
-    <%- include('partials/slideBarMenu') %>
+      <%- include('partials/slideBarMenu') %>
 
-    <div class="moviesAdd_box">
-    
-        <div class="form-wrapper_codingnepal">
-          
-            
+        <div class="moviesAdd_box">
+
+          <div class="form-wrapper_codingnepal">
+
+
             <div class="moviesAdd_box_Form">
               <section class="container">
                 <header>Editar Película</header>
-                <form action="/movies/update/<%= movies.id %>?_method=PUT" method="POST" class="form">
-  
+                <form action="/movies/update/<%= movies.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="form">
+
                   <!-- title -->
                   <div class="input-box">
                     <label>Titulo de la Película</label>
-                    <input name="title" id="title" type="text" placeholder="Titulo de la Película" value="<%= movies.title %>" required />
+                    <input name="title" id="title" type="text" placeholder="Titulo de la Película"
+                      value="<%= movies.title %>" required />
                   </div>
-  
+
                   <div class="column">
-  
+
                     <!-- rating -->
                     <div class="input-box">
                       <label>Rating</label>
-                      <input name="rating" id="rating" type="number" placeholder="Rating" value="<%= movies.rating %>" required />
+                      <input name="rating" id="rating" type="number" placeholder="Rating" value="<%= movies.rating %>"
+                        required />
                     </div>
-  
+
                     <!-- awards -->
                     <div class="input-box">
                       <label>Awards</label>
-                      <input name="awards" id="awards" type="number" placeholder="Awards" value="<%= movies.awards %>" required />
+                      <input name="awards" id="awards" type="number" placeholder="Awards" value="<%= movies.awards %>"
+                        required />
                     </div>
-  
+
                     <!-- length -->
                     <div class="input-box">
                       <label>Duracion</label>
-                      <input name="length" id="length" type="number" placeholder="Duracion" value="<%= movies.length %>" required />
+                      <input name="length" id="length" type="number" placeholder="Duracion" value="<%= movies.length %>"
+                        required />
                     </div>
-  
+
                     <!-- release_date -->
                     <div class="input-box">
                       <label>Estreno</label>
-                      <input name="release_date" id="release_date" type="date" placeholder="Estreno" value="<%= moment(movies.release_date).format('YYYY-MM-DD') %>" required />
+                      <input name="release_date" id="release_date" type="date" placeholder="Estreno"
+                        value="<%= moment(movies.release_date).format('YYYY-MM-DD') %>" required />
                     </div>
-  
+
                   </div>
-  
+
                   <!-- genre -->
                   <div class="column">
                     <div class="input-box">
                       <label>Género</label>
                       <div class="select-box">
                         <select name="genre_id" id="genre_id">
-                        <% genres.forEach(genre => { %>
-                          <option value="<%= genre.id %>" <%= genre.id === movies.genre_id && 'selected' %> ><%= genre.name %></option>
-                        <% }) %>
+                          <% genres.forEach(genre=> { %>
+                            <option value="<%= genre.id %>" <%=genre.id===movies.genre_id && 'selected' %> ><%=
+                                genre.name %>
+                            </option>
+                            <% }) %>
                         </select>
                       </div>
                     </div>
-  
+
                   </div>
-  
+
+                  <!-- IMAGEN -->
+                  <div class="input-box">
+                    <label class="form-group__label" for="image">Cambiar imagen</label>
+                    <input class="form-group__input form-control form-control-sm" type="file" id="image" name="image" />
+                    <div class="moviesEdit__img__container">
+                      <img class="moviesEdit__img" src="/img/<%= movies.image %>?_method=PUT" method="POST" alt="">
+                    </div>
+
+                  </div>
+
                   <!-- Actors -->
                   <div class="gender-box">
                     <h3>Actores</h3>
                     <div class="gender-option">
                       <div class="gender">
-                      <% actors.forEach(actor => {  %>
-                      
-                      <div class="form-check">
-                      
-                        <input name="actors" type="checkbox" <%= movies.actors.map(actor => actor.id).includes(actor.id) && 'checked' %> id="actor<%= actor.id %>" value="<%= actor.id %>"/>
-                        <label for="actor<%= actor.id %>">
-                          
-                            <%= actor.first_name %> <%= actor.last_name %>
-                          
-                        </label> 
-                      
-                      </div>
-                      
-                        
-                        
-                        <% }) %>
+                        <% actors.forEach(actor=> { %>
+
+                          <div class="form-check">
+
+                            <input name="actors" type="checkbox" <%=movies.actors.map(actor=>
+                            actor.id).includes(actor.id) && 'checked' %> id="actor<%= actor.id %>" value="<%= actor.id
+                                %>"/>
+                                <label for="actor<%= actor.id %>">
+
+                                  <%= actor.first_name %>
+                                    <%= actor.last_name %>
+
+                                </label>
+
+                          </div>
+
+
+
+                          <% }) %>
 
                       </div>
-  
+
                     </div>
                   </div>
-  
+
                   <!-- btn Guardar -->
                   <div class="button_codingnepal">
                     <button class="glow-on-hover" type="submit">Guardar</button>
@@ -105,16 +125,16 @@
               </section>
             </div>
           </div>
-    
-    </div>
-      
-  </div>
-  
-  <%- include('partials/scripts') %>
-</body>
-<!-- ---------------------------------- -->
-<footer>
 
-</footer>
+        </div>
+
+    </div>
+
+    <%- include('partials/scripts') %>
+  </body>
+  <!-- ---------------------------------- -->
+  <footer>
+
+  </footer>
 
 </html>
