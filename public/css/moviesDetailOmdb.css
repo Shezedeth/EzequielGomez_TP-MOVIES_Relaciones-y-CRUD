@@ -1,26 +1,26 @@
-.body__moviesDetail {
+.body__moviesDetailOmdb {
 }
-.moviesDetail__btns {
+.moviesDetailOmdb__btns {
   display: flex;
   flex-direction: row;
   padding-top: 14px;
   justify-content: space-around;
 }
-.moviesDetail__btns__p {
+.moviesDetailOmdb__btns__p {
   display: flex;
   text-align: center;
   flex-direction: column;
   font-size: 1.2rem;
   padding-top: 5px;
 }
-.moviesDetail__btns__a {
+.moviesDetailOmdb__btns__a {
 
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.moviesDetail__btns__container {
+.moviesDetailOmdb__btns__container {
   display: flex;
   width: 217px; 
 }
@@ -28,44 +28,44 @@
   background-color: black;
 }
 
-.moviesDetail__movieCard__container {
+.moviesDetailOmdb__movieCard__container {
   display: flex;
   flex-direction: row;
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.moviesDetail__movieCard__imgBox {
+.moviesDetailOmdb__movieCard__imgBox {
   width: 341px;
   padding: 0px 0px 0px 0px;
 }
 
-.moviesDetail__movieCard__imgDiv {
+.moviesDetailOmdb__movieCard__imgDiv {
     width: 350px;
 }
 
-.moviesDetail__movieCard__imgDiv__img {
+.moviesDetailOmdb__movieCard__imgDiv__img {
   width: 100%;
 }
 
-.moviesDetail__movieCard__infoContainer {
-  width: 250px;
+.moviesDetailOmdb__movieCard__infoContainer {
+  width: 709px;
   padding: 24px 0px 0px 34px;
 }
 
-.moviesDetail__movieCard__infoContainer__box {
+.moviesDetailOmdb__movieCard__infoContainer__box {
 }
-.moviesDetail__movieCard__infoContainer__box__h3 {
+.moviesDetailOmdb__movieCard__infoContainer__box__h3 {
   font-size: 1.4rem;
   color: #ff0000;
   text-transform: uppercase;
   font-weight: 900;
 }
 
-.moviesDetail__movieCard__infoContainer__box__p {
+.moviesDetailOmdb__movieCard__infoContainer__box__p {
   color: white;
 }
 
-.moviesDetail__movieCard__infoContainer__box__p__small {
+.moviesDetailOmdb__movieCard__infoContainer__box__p__small {
   color: #0dcaf0;
   font-size: 0.7rem;
 }

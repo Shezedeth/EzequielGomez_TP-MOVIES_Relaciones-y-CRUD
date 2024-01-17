@@ -1,0 +1,75 @@
+        <!-- ************************************* -->
+
+        <div class="moviesDetail__movieCard__container">
+
+            <div class="moviesDetail__movieCard__imgBox">
+  
+              <div class="moviesDetail__movieCard__imgDiv">
+  
+                <img class="moviesDetail__movieCard__imgDiv__img" src="/img/<%= image %>" alt="">
+  
+              </div>
+  
+            </div>
+            <div class="moviesDetail__movieCard__infoContainer">
+  
+              <div class="moviesDetail__movieCard__infoContainer__box">
+  
+                <h3 class="moviesDetail__movieCard__infoContainer__box__h3">
+                 <%= title %>
+                </h3>
+  
+                <p class="moviesDetail__movieCard__infoContainer__box__p">Género :
+  
+                  <% genres.forEach(genre=> { %>
+  
+                    <% if (genre.id===genre_id) { %>
+                      <%= genre.name %>
+                        <% } %>
+  
+                          <% }) %>
+  
+                </p>
+                <p class="moviesDetail__movieCard__infoContainer__box__p">Duracion : <%= length %> min</p>
+                <p class="moviesDetail__movieCard__infoContainer__box__p">Estreno : <%=
+                    moment(release_date).format('YYYY-MM-DD') %>
+                </p>
+                <p class="moviesDetail__movieCard__infoContainer__box__p">Premios : <%= awards %>
+                </p>
+                <p class="moviesDetail__movieCard__infoContainer__box__p">Rating : <%= rating %>
+                </p>
+                <p class="moviesDetail__movieCard__infoContainer__box__p">Actores : <br>
+  
+                  <% actors.forEach(actor=> { %>
+                    <small class="moviesDetail__movieCard__infoContainer__box__p__small"><%= actor.first_name %> <%= actor.last_name %> <br></small>
+                    
+                        <% }) %>
+  
+                </p>
+  
+  
+  
+  
+              </div>
+  
+            </div>
+  
+          </div>
+          <!-- btns -->
+          <div class="moviesDetail__btns">
+  
+            <div class="button_codingnepal moviesDetail__btns__container">
+              <a href="/movies/edit/<%= id %>" class="glow-on-hover moviesDetail__btns__a">
+                <p class="moviesDetail__btns__p">Editar</p>
+              </a>
+            </div>
+            <div class="button_codingnepal moviesDetail__btns__container">
+              <a href="/movies/delete/<%= id %>" class="glow-on-hover moviesDetail__btns__a">
+                <p class="moviesDetail__btns__p">Eliminar</p>
+              </a>
+            </div>
+  
+          </div>
+  
+  
+            <!-- ************************************* -->

@@ -8,6 +8,8 @@ const deleteImage = require("../utils/deleteImage");
 //Aqui tienen una forma de llamar a cada uno de los modelos
 // const {Movies,Genres,Actor} = require('../database/models');
 
+const API = 'http://www.omdbapi.com/?apikey=ece0405c';
+
 const moviesController = {
   // -------------------------------------------------------------------
   list: (req, res) => {
@@ -323,6 +325,24 @@ const moviesController = {
       })
       .catch((error) => console.log(error));
   },
+  buscar: (req, res) => {
+    const title = req.query.titulo;
+    
+    fetch(`${API}&t=${title}`)
+        .then(data => {
+            return data.json()
+        })
+        .then(movie => {
+            // console.log(movie)
+            return res.render('moviesDetailOmdb',{
+                movie
+            })
+        })
+        .catch(error => console.log(error))
+    
+   
+    
+},
 };
 
 module.exports = moviesController;

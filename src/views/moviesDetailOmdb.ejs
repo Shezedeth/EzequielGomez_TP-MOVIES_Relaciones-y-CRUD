@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('partials/head',{title: movie.title }) %>
+
+    <!-- ----------------------------------- -->
+
+    <body class="body_moviesAdd">
+
+        <div class="body_codingnepal">
+
+            <!-- ************************************* -->
+
+            <div class="moviesDetail__movieCard__container">
+
+                <div class="moviesDetail__movieCard__imgBox">
+
+                    <div class="moviesDetail__movieCard__imgDiv">
+
+                        <img class="moviesDetail__movieCard__imgDiv__img" src="<%= movie.Poster %>" alt="">
+
+                    </div>
+
+                </div>
+                <div class="moviesDetailOmdb__movieCard__infoContainer">
+
+                    <div class="moviesDetailOmdb__movieCard__infoContainer__box">
+
+                        <h3 class="moviesDetailOmdb__movieCard__infoContainer__box__h3">
+                            <%= movie.Title %>
+                        </h3>
+
+                        <p class="moviesDetailOmdb__movieCard__infoContainer__box__p">
+
+                            Género : <%= movie.Genre %>
+
+                        </p>
+                        <p class="moviesDetailOmdb__movieCard__infoContainer__box__p">Duracion : <%= movie.Runtime %>
+                                min</p>
+                        <p class="moviesDetailOmdb__movieCard__infoContainer__box__p">Estreno : <%= movie.Released %>
+                        </p>
+                        <p class="moviesDetailOmdb__movieCard__infoContainer__box__p">Premios : <%= movie.Awards %>
+                        </p>
+
+                        <p class="moviesDetailOmdb__movieCard__infoContainer__box__p">Rating : <%=
+                                movie.Ratings[0].Source %> <br>
+                                <%= movie.Ratings[0].Value %>
+                        </p>
+                        <p class="moviesDetailOmdb__movieCard__infoContainer__box__p">Actores : <br>
+
+                            <small class="moviesDetailOmdb__movieCard__infoContainer__box__p__small">
+                                <%= movie.Actors %> <br>
+                            </small>
+
+                        </p>
+                        <p class="moviesDetailOmdb__movieCard__infoContainer__box__p">Reseña : <%= movie.Plot %>
+                        </p>
+
+                        <!-- btns -->
+                        <div class="moviesDetail__btns">
+
+                            <div class="button_codingnepal moviesDetail__btns__container">
+                                <a href="/" class="glow-on-hover moviesDetail__btns__a">
+                                    <p class="moviesDetail__btns__p">Seguir buscando </p>
+                                </a>
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ************************************* -->
+
+
+
+        </div>
+
+        <%- include('partials/scripts') %>
+    </body>
+    <!-- ---------------------------------- -->
+    <footer>
+
+    </footer>
+
+</html>
