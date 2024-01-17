@@ -4,7 +4,7 @@
 .moviesAdd_box {
   display: flex;
   position: absolute;
-  width: 46vw;
+  /* width: 46vw; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -17,7 +17,6 @@
 }
 
 .body_codingnepal {
-
 }
 .body_codingnepal::before {
   content: "";
@@ -48,7 +47,7 @@
 .form-wrapper_codingnepal {
   display: flex;
   /* position: absolute; */
-  height: 100vh;
+  /* height: 100vh; */
   top: 5%;
   border-radius: 4px;
   padding: 35px 15px 15px 15px;

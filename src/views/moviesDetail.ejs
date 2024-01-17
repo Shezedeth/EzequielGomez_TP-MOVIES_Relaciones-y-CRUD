@@ -36,7 +36,7 @@
             <div class="moviesDetail__movieCard__infoContainer__box">
 
               <h3 class="moviesDetail__movieCard__infoContainer__box__h3">
-                <%= title %>
+               <%= title %>
               </h3>
 
               <p class="moviesDetail__movieCard__infoContainer__box__p">Género :
@@ -58,11 +58,11 @@
               </p>
               <p class="moviesDetail__movieCard__infoContainer__box__p">Rating : <%= rating %>
               </p>
-              <p class="moviesDetail__movieCard__infoContainer__box__p">Actores : <br>|
+              <p class="moviesDetail__movieCard__infoContainer__box__p">Actores : <br>
 
                 <% actors.forEach(actor=> { %>
-                  <%= actor.first_name %>
-                    <%= actor.last_name %> |
+                  <small class="moviesDetail__movieCard__infoContainer__box__p__small"><%= actor.first_name %> <%= actor.last_name %> <br></small>
+                  
                       <% }) %>
 
               </p>

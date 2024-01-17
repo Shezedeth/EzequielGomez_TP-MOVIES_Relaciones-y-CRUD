@@ -3,7 +3,7 @@
 .moviesDetail__btns {
   display: flex;
   flex-direction: row;
-  padding-top: 50px;
+  padding-top: 14px;
   justify-content: space-around;
 }
 .moviesDetail__btns__p {
@@ -29,19 +29,18 @@
 }
 
 .moviesDetail__movieCard__container {
-  width: 60vw;
   display: flex;
   flex-direction: row;
   background-color: rgba(0, 0, 0, 0.8);
 }
 
 .moviesDetail__movieCard__imgBox {
-  width: 500px;
- 
-  padding: 20px;
+  width: 341px;
+  padding: 0px 0px 0px 0px;
 }
 
 .moviesDetail__movieCard__imgDiv {
+    width: 350px;
 }
 
 .moviesDetail__movieCard__imgDiv__img {
@@ -49,16 +48,25 @@
 }
 
 .moviesDetail__movieCard__infoContainer {
-  padding: 26px;
+  width: 245px;
+  padding: 24px 0px 0px 34px;
 }
 
 .moviesDetail__movieCard__infoContainer__box {
 }
 .moviesDetail__movieCard__infoContainer__box__h3 {
-  font-size: 1rem;
-  color: white;
+  font-size: 1.4rem;
+  color: #ff0000;
+  text-transform: uppercase;
+  font-weight: 900;
 }
 
 .moviesDetail__movieCard__infoContainer__box__p {
   color: white;
 }
+
+.moviesDetail__movieCard__infoContainer__box__p__small {
+  color: #0dcaf0;
+  font-size: 0.7rem;
+}
+
