@@ -11,6 +11,7 @@ const {
   destroy,
   update,
   buscar,
+  search,
   edit,
 } = require("../controllers/moviesController");
 const upload = require('../middlewares/upload');
@@ -28,6 +29,7 @@ router
   .put("/movies/update/:id", upload.single('image'), update)
   .get("/movies/delete/:id", remove)
   .get('/movies/buscar', buscar)
+  .get('/movies/search', search)
   .delete("/movies/delete/:id", destroy);
 
 module.exports = router;

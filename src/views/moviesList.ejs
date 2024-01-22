@@ -13,11 +13,40 @@
                 <div class="movieList_cards-wrapper_codingnepal">
                     <div class="movieList_cards-box">
 
-                        <main class="admin__main">
-                            <h1 class="text-light bg-dark">LISTADO DE PELÍCULAS</h1>
+                        <main class="movieList__main">
+                        
+                            <h1 class="text-light bg-dark movieList__title">LISTADO DE PELÍCULAS</h1>
+                            
+                            <nav aria-label="breadcrumb" class="movieList__breadcrumb">
+                                <ol class="breadcrumb txt__blanco">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <% if (result === 1) { %>
+                                        <li class="breadcrumb-item"><a href="/movies">Películas</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Resultado de la búsqueda</li>
+                                    <% } else { %>
+                                        <li class="breadcrumb-item txt__blanco active" aria-current="page">Películas</li>
+                                    <% } %>
+                                </ol>
+                            </nav>
                             <div class="admin__main__containerTable bg-dark">
+                            
+                            
 
                                 <table class="table table-dark table-hover admin__table ">
+                                
+                                    
+                                    <form action="/movies/search" method="GET">
+                                        <div class="movieList__searchContainer">
+                                            <div class="input-group movieList__search">
+                                                <input type="text" class="form-control" name="keyword">
+                                                <button type="submit" class="input-group-text"><i
+                                                        class="fa fa-search"></i></button>
+                                            </div>
+
+                                        </div>
+
+
+                                    </form>
 
                                     <thead class="admin__table__thead">
                                         <tr>
@@ -93,42 +122,49 @@
                                                                     class="modal-content bg-dark admin__modal__container__content">
                                                                     <div
                                                                         class="modal-header admin__modal__container__header">
-                                                                        <h5 class="modal-title"
-                                                                            id="detailProduct<%= movies[i].id %>Label">
-                                                                            <%= movies[i].title %>
-                                                                        </h5>
+ 
                                                                         <button type="button"
                                                                             class="btn-close admin__btn__close"
-                                                                            data-bs-dismiss="modal"
-                                                                            aria-label="Close">
+                                                                            data-bs-dismiss="modal" aria-label="Close">
                                                                             <i class="fa-solid fa-xmark"></i></button>
                                                                     </div>
-                                                                    <div class="modal-body admin__modalbody">
+                                                                    <div class="modal-body movieList__modalbody">
                                                                         <div
-                                                                            class="card mb-3 bg-dark  admin__modalbody__card">
+                                                                            class="card mb-3 bg-dark  movieList__modalbody__card">
                                                                             <div
-                                                                                class="row g-0 bg-dark  admin__modalbody__card__container">
+                                                                                class="row g-0 bg-dark  movieList__modalbody__card__container">
                                                                                 <div
-                                                                                    class="col-md-6 admin__modalbody__card__containerImagen">
+                                                                                    class="col-md-6 movieList__modalbody__card__containerImagen">
                                                                                     <img class="card-img-top"
-                                                                                        src="/img/image-default.gif"
+                                                                                        src="/img/<%= movies[i].image %>"
                                                                                         class="img-fluid rounded-start"
                                                                                         alt="...">
                                                                                 </div>
-                                                                                <div
-                                                                                    class="col-md-6 admin__modalbody__card__container__card">
-                                                                                    <div
-                                                                                        class="card-body admin__modalbody__card__container__card__txt">
-                                                                                        <h5
-                                                                                            class="card-text bg-dark text-white">
-                                                                                            imagen no disponible
-                                                                                        </h5>
-                                                                                        <p
-                                                                                            class="card-text bg-dark text-white">
-                                                                                            pero es un PE-LI-CU-LON
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </div>
+                                                                                <div class="moviesDetail__movieCard__infoContainer__box">
+
+                                                                                    <h3 class="moviesDetail__movieCard__infoContainer__box__h3">
+                                                                                      <%= movies[i].title %>
+                                                                                    </h3>
+                                                                      
+                                                                                    <p class="moviesDetail__movieCard__infoContainer__box__p">Género :
+                                                                      
+                                                                                        <%= movies[i].genre?.name || 'Sin especificar' %>
+                                                                      
+                                                                                    </p>
+                                                                                    <p class="moviesDetail__movieCard__infoContainer__box__p">Duracion : <%= movies[i].length %> min</p>
+                                                                                    <p class="moviesDetail__movieCard__infoContainer__box__p">Estreno : <%= moment(movies[i].release_date).format('YYYY-MM-DD')
+                                                                                        || 'Sin especificar' %>
+                                                                                    </p>
+                                                                                    <p class="moviesDetail__movieCard__infoContainer__box__p">Premios : <%= movies[i].awards %>
+                                                                                    </p>
+                                                                                    <p class="moviesDetail__movieCard__infoContainer__box__p">Rating : <%= movies[i].rating %>
+                                                                                    </p>
+                                                                                    
+                                                                      
+                                                                      
+                                                                      
+                                                                      
+                                                                                  </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -140,8 +176,9 @@
                                                                 class="fas fa-edit"></i></a>
 
                                                         <!-- Button trigger modal -->
-                                                        <a href="/movies/delete/<%= movies[i].id %>" type="button" class="btn btn-sm btn-danger">
-                                                    
+                                                        <a href="/movies/delete/<%= movies[i].id %>" type="button"
+                                                            class="btn btn-sm btn-danger">
+
                                                             <i class="fas fa-trash"></i>
                                                         </a>
 

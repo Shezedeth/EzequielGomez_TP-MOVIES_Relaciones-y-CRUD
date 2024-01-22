@@ -65,16 +65,20 @@
                         
 
                         <td>
-
-                          <select class="form-select" aria-label="Default select example" id="">
+                        <form name="formulario1" method="post">
+                        <select class="form-select" aria-label="Default select example"  name="destinos" onchange="location.href=formulario1.destinos.value;">
 
                             <% genre.movies.forEach(movie=> { %>
-                              <option value="1"><a href="">
+                              <option value="/movies/detail/<%= movie.id %>">
                                   <%= movie.title %>
-                                </a></option>
+                                </option>
                               <% }) %>
 
                           </select>
+                        
+                        </form>
+
+                          
 
                         </td>
 

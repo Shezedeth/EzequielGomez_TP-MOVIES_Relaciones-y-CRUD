@@ -52,8 +52,7 @@
   padding: 24px 0px 0px 34px;
 }
 
-.moviesDetail__movieCard__infoContainer__box {
-}
+.moviesDetail__movieCard__infoContainer__box {width: 48%;}
 .moviesDetail__movieCard__infoContainer__box__h3 {
   font-size: 1.4rem;
   color: #ff0000;

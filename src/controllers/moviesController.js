@@ -8,7 +8,8 @@ const deleteImage = require("../utils/deleteImage");
 //Aqui tienen una forma de llamar a cada uno de los modelos
 // const {Movies,Genres,Actor} = require('../database/models');
 
-const API = 'http://www.omdbapi.com/?apikey=ece0405c';
+const API_MOVIES = "http://www.omdbapi.com/?apikey=ece0405c";
+const API_ACTORS = "https://api.api-ninjas.com/v1/celebrity?name=";
 
 const moviesController = {
   // -------------------------------------------------------------------
@@ -34,6 +35,7 @@ const moviesController = {
           genres,
           moment,
           top,
+          result : 0
         });
       })
       .catch((error) => console.log(error));
@@ -293,10 +295,9 @@ const moviesController = {
   // -------------------------------------------------------------------
   destroy: function (req, res) {
     // TODO
-    db.Movie.findByPk(req.params.id)
-          .then((movie) => {
-            deleteImage(movie.image)
-          })
+    db.Movie.findByPk(req.params.id).then((movie) => {
+      deleteImage(movie.image);
+    });
 
     db.Actor_Movie.destroy({
       where: {
@@ -327,22 +328,55 @@ const moviesController = {
   },
   buscar: (req, res) => {
     const title = req.query.titulo;
+
+    fetch(`${API_MOVIES}&t=${title}`)
+      .then((data) => {
+        return data.json();
+      })
+      .then((movie) => {
+        // console.log(movie)
+        return res.render("moviesDetailOmdb", {
+          movie,
+        });
+      })
+      .catch((error) => console.log(error));
+  },
+  // -----------------------------------------------------------------------------------
+  search: (req, res) => {
+    const keyword = req.query.keyword;
     
-    fetch(`${API}&t=${title}`)
-        .then(data => {
-            return data.json()
-        })
-        .then(movie => {
-            // console.log(movie)
-            return res.render('moviesDetailOmdb',{
-                movie
-            })
-        })
-        .catch(error => console.log(error))
+    const genres = db.Genre.findAll({
+      order: ["name"],
+    });
+    const top = db.Movie.findAll({
+      limit: 5,
+      where: {
+        rating: { [db.Sequelize.Op.gte]: 8 },
+      },
+      order: [["rating", "DESC"]],
+    });
     
+    const movies = db.Movie.findAll({
+      include: ["genre"],
+      where : {
+        title : {
+          [Op.substring] : keyword
+        }
+      }
+    });
+    Promise.all([genres,top, movies])
+    .then(([genres,top ,movies]) => {
+      return res.render("moviesList", {
+        genres,
+        top,
+        movies,
+        moment,
+        result : 1
+        
+      });
+    }).catch((error) => console.log(error));
    
-    
-},
+  },
 };
 
 module.exports = moviesController;
