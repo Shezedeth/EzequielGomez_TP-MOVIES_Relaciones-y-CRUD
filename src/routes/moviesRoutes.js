@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   list,
   new: newest,
-  recomended,
+  recommended,
   delete: remove,
   create,
   add,
@@ -20,7 +20,7 @@ const upload = require('../middlewares/upload');
 router
   .get("/movies", list)
   .get("/movies/new", newest)
-  .get("/movies/recommended", recomended)
+  .get("/movies/recommended", recommended)
   .get("/movies/detail/:id", detail)
   //Rutas exigidas para la creación del CRUD
   .get("/movies/add", add)

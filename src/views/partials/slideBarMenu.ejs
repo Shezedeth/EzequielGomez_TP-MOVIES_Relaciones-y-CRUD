@@ -19,10 +19,10 @@
                 <a href="/movies">
                     <i
                         class="fa-solid fa-list animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite"></i>
-                    <span class="link_name">Peliculas</span>
+                    <span class="link_name">Películas</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="/movies">Listado de Peliculas</a></li>
+                    <li><a class="link_name" href="/movies">Listado de Películas</a></li>
                 </ul>
             </li>
 
@@ -32,12 +32,12 @@
                     <a href="/genres">
                         <i
                             class="fa-solid fa-masks-theater animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite"></i>
-                        <span class="link_name">Generos</span>
+                        <span class="link_name">Géneros</span>
                     </a>
                     <i class='bx bxs-chevron-down arrow'></i>
                 </div>
                 <ul class="sub-menu">
-                    <li><a class="link_name" href="/genres">Listado de Generos</a></li>
+                    <li><a class="link_name" href="/genres">Listado de Géneros</a></li>
                     <% genres.forEach(genre => { %>
                         <li><a href="/genres/detail/<%= genre.id %>"><%= genre.name %></a></li>
                     <% }) %>
@@ -94,7 +94,7 @@
                     <span class="link_name">Estrenos</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="/movies/new">Ultimos estrenos</a></li>
+                    <li><a class="link_name" href="/movies/new">Últimos estrenos</a></li>
                 </ul>
             </li>
 
@@ -105,7 +105,7 @@
                         class="custom__icons__slidebar animate__animated animate__heartBeat animate__delay-2s animate__slower animate__infinite">
                         <img src="/img/addMovie.svg" alt="">
                     </i>
-                    <span class="link_name">Agregar Peliculas</span>
+                    <span class="link_name">Agregar Películas</span>
                 </a>
                 <ul class="sub-menu blank">
                     <li><a class="link_name" href="/movies/add">Agregar</a></li>
@@ -121,7 +121,7 @@
         </div>
     </section>
 
-    <!--***** script slidebar *****-->
+    <!--***** script sidebar *****-->
     <script>
         let arrow = document.querySelectorAll(".arrow");
         for (var i = 0; i < arrow.length; i++) {

@@ -5,7 +5,7 @@ const sequelize = db.sequelize;
 const { Op } = require("sequelize");
 const deleteImage = require("../utils/deleteImage");
 
-//Aqui tienen una forma de llamar a cada uno de los modelos
+//Aquí tienen una forma de llamar a cada uno de los modelos
 // const {Movies,Genres,Actor} = require('../database/models');
 
 const API_MOVIES = "http://www.omdbapi.com/?apikey=ece0405c";
@@ -97,7 +97,7 @@ const moviesController = {
     );
   },
   // -------------------------------------------------------------------
-  recomended: (req, res) => {
+  recommended: (req, res) => {
     const mejores = db.Movie.findAll({
       where: {
         rating: { [db.Sequelize.Op.gte]: 8 },
